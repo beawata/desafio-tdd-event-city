@@ -3,7 +3,6 @@ package com.devsuperior.bds02.controllers;
 import com.devsuperior.bds02.dto.CityDTO;
 import com.devsuperior.bds02.services.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -40,4 +39,11 @@ public class CityController {
                 .buildAndExpand(dto.getId()).toUri();
         return ResponseEntity.created(uri).body(dto);
     }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<CityDTO> delete(@PathVariable Long id) {
+        service.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }
